@@ -1,5 +1,5 @@
 <%- include('../layouts/navbar.ejs') %>
- <%- include('../layouts/sidebar.ejs') %>
+<%- include('../layouts/sidebar.ejs') %>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -35,10 +35,25 @@
             type="button"
             class="btn btn-info Display-flex"
             data-toggle="modal"
-            data-target="#modal-default"
-          >
+            data-target="#modal-default">
             Add Student
+            
+
           </button>
+          <br>
+          <br>
+           <% if(error.length>0){ %>
+      <div class="alert alert-danger">
+        <!-- To print -->
+         <%= error %>
+      </div>
+    <% } %>
+    <% if(success.length>0){ %>
+      <div class="alert alert-success">
+        <!-- To print -->
+         <%= success %>
+      </div>
+    <% } %>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -46,50 +61,51 @@
             <thead>
               <tr>
                 <th>s.No</th>
+                <th>RollNo</th>
                 <th>Name</th>
-                <th>Email</th>
+                
                 <th>Phone</th>
-                <th>Course</th>
+                  <th>image</th>
+                <th>Branch</th>
+                 
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
-                <td>rocky</td>
-                <td>rockysingh@gmail.com</td>
-                <td>2352535</td>
-                <td>btech</td>
-                <td>
-                  <a href="" class="btn btn-info">View</a>
-                  <a href="" class="btn btn-dark">Edit</a>
-                  <a href="" class="btn btn-danger">Delete</a>
-                </td>
+               <% std.forEach((item,index)=>{ %>
+                
+                <tr>
+                  <td><%= index+1 %></td>
+                  <td><%= item.rollNumber %></td>
+                  <td><%= item.name %></td>
+                  
+                  <td><%= item.phone %></td>
+                  <td><img src="<%= item.image.url %>" alt="" width="100"></td>
+                  <td><%= item.branch %></td>
+                  <td>
+                     <a href ="/studentView/<%= item._id %>"class="btn btn-info">View</a>
+                  <a href="/studentEdit/<%= item._id %>" class="btn btn-dark">Edit</a>
+                  <a href="/studentDelete/<%= item._id %>" class="btn btn-danger">Delete</a>
+                  </td>
+                </tr>
+              <% }) %>
               </tr>
 
-              <tr>
-                <td>2</td>
-                <td>vicky</td>
-                <td>vicky@gmail.com</td>
-                <td>4363178</td>
-                <td>Mtech</td>
-                <td>
-                  <a href="" class="btn btn-info">View</a>
-                  <a href="" class="btn btn-dark">Edit</a>
-                  <a href="" class="btn btn-danger">Delete</a>
-                </td>
+              
               </tr>
             </tbody>
-            <tfoot>
+            <!-- <tfoot>
               <tr>
                 <th>s.No</th>
                 <th>Name</th>
-                <th>Email</th>
+                
                 <th>Phone</th>
-                <th>Course</th>
+                <th>Branch</th>
+                  <th>image</th>
                 <th>Action</th>
               </tr>
-            </tfoot>
+            </tfoot> -->
           </table>
         </div>
         <!-- /.card-body -->
@@ -108,31 +124,82 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Add Student</h4>
+        <% if(error.length> 0){ %>
+          <div class="alert alert-error">
+              <!-- To print -->
+              <%= error %>
+          </div>
+          <% } %>
+          <% if(success.length> 0){ %>
+            <div class="alert alert-success">
+                <!-- To print -->
+                <%= success %>
+            </div>
+            <% } %>
         <button
           type="button"
           class="close"
           data-dismiss="modal"
-          aria-label="Close"
-        >
+          aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="">
-          <div class="form-group ">
-            <label for="">Name</label>
-            <input type="text" name="Name" class="form-control">
+        <form action="/student/insert" method="post"enctype="multipart/form-data">
+          <div class="form-group">
+            <label for>RollNo</label>
+            <input type="text" name="rollNumber" class="form-control" required>
           </div>
-          <div class="form-group ">
-            <label for="">Email</label>
-            <input type="text" name="Email" class="form-control">
+          <div class="form-group">
+            <label for>Name</label>
+            <input type="text" name="name" class="form-control" required>
           </div>
-          <div class="form-group ">
-            <label for="">Phone</label>
-            <input type="text" name="Phone" class="form-control">
+          <div class="form-group">
+            <label for>Email</label>
+            <input type="text" name="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for>Address</label>
+            <textarea name="address" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for>Gender</label>
+            <select name="gender" id class="form-control" required>
+              <option value>Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">FeMale</option>
+            </select>
           </div>
 
-          <button class="btn btn-info">Submit</button>
+        
+          <div class="form-group">
+            <label for>dob</label>
+            <input type="date" name="dob" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for>Phone</label>
+            <input type="number" name="phone" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for>Branch</label>
+            <input type="text" name="branch" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for>Semester</label>
+            <input type="text" name="semester" class="form-control" required>
+          </div>
+           <div class="form-group">
+            <label for>Image</label>
+            <input type="file" name="image" class="form-control"
+              required>
+          </div>
+          <div class="form-group">
+            <label for>Password</label>
+            <input type="password" name="password" class="form-control"
+              required>
+          </div>
+
+          <button type="submit" class="btn btn-info">Submit</button>
         </form>
       </div>
     </div>

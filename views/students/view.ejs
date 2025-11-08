@@ -1,0 +1,142 @@
+<%- include('../layouts/navbar.ejs') %>
+<%- include('../layouts/sidebar.ejs') %>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Students View</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Students View</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <!-- <h3 class="card-title">DataTable with default features</h3> -->
+         
+          
+         
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+         <table style="width: 50%; border-collapse: collapse; margin: 20px auto;">
+  <tbody>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Roll Number</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.rollNumber %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2; width: 30%;">Name</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.name %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Address</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.address %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Gender</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.gender %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Email</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.email %></td>
+    </tr>
+   <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">DOB</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.dob %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Phone</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.phone %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Branch</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.branch %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Semester</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.semester %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Password</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.password %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Image</th>
+      <td style="border: 1px solid #333; padding: 10px;">
+        <img src="<%= view.image.url %>" alt="User Image" width="100" />
+      </td>
+      <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">X year</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.Xyear %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Xmark</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.Xmarks %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">XIIyear</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.XIIyear %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">XII marks</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.XIImarks %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Resume</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.resume %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Collage</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.collage %></td>
+    </tr>
+   <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Place Company</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.placedCompany %></td>
+    </tr>
+<tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Role</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.role %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">createdAt</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.createdAt %></td>
+    </tr>
+    </tr>
+  </tbody>
+</table>
+
+         
+        </div>
+        <!-- /.card-body -->
+      </div>
+
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+<%- include('../layouts/footer.ejs') %>

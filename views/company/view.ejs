@@ -1,0 +1,146 @@
+<%- include('../layouts/navbar.ejs') %>
+<%- include('../layouts/sidebar.ejs') %>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Company View</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">company view</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="card">
+        <div class="card-header">
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table style="width: 50%; border-collapse: collapse; margin: 20px auto;">
+  <tbody>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2; width: 30%;">Name</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.name %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Email</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.email %></td>
+    </tr>
+    
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Password</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.password %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Phone</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.phone %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Address</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.address %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Website</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.website %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Role</th>
+      <td style="border: 1px solid #333; padding: 10px;"><%= view.role %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #333; padding: 10px; background-color: #f2f2f2;">Image</th>
+      <td style="border: 1px solid #333; padding: 10px;">
+        <img src="<%= view.image.url %>" alt="User Image" width="100" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add student</h4>
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/insert/company" method="post"
+          enctype="multipart/form-data">
+
+          <div class="form-group">
+            <label for>Compnay Name</label>
+            <input type="text" name="name" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for>Address:</label>
+            <textarea name="address" id class="form-control"
+              required></textarea>
+          </div>
+          <div class="form-group">
+            <label for>Website</label>
+            <input type="text" name="website" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for>Email</label>
+            <input type="email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for>Phone</label>
+            <input type="number" name="phone" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for>Password</label>
+            <input type="password" name="password" class="form-control"
+              required>
+          </div>
+          <div class="form-group">
+            <label for>image</label>
+            <input type="file" name="image" class="form-control" required>
+          </div>
+
+          <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<%- include('../layouts/footer.ejs') %>

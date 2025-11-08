@@ -4,7 +4,7 @@ const Local_Url="mongodb://127.0.0.1:27017/CollagePlacementSystem"
 
 
 const connectDb = ()=>{
-    return mongoose.connect(Local_Url)
+    return mongoose.connect(process.env.Local_Url)
     .then(()=>{
         console.log("Connect Db")
     }).catch((error)=>{

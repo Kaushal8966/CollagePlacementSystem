@@ -1,0 +1,209 @@
+<%- include('../layouts/navbar.ejs') %>
+    <%- include('../layouts/sidebar.ejs') %>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Job Listings</h1>
+                            <% if (error.length> 0) { %>
+                                <div class="alert alert-danger">
+                                    <%= error %>
+                                </div>
+                                <% } %>
+                                    <% if (success.length> 0) { %>
+                                        <div class="alert alert-success">
+                                            <%= success %>
+                                        </div>
+                                        <% } %>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Jobs</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
+                                Post Job
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Title</th>
+                                        <th>Location</th>
+                                        <th>Department</th>
+                                        <th>Salary</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% jobs.forEach((job, index)=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= index + 1 %>
+                                            </td>
+                                            <td>
+                                                <%= job.title %>
+                                            </td>
+                                            <td>
+                                                <%= job.location %>
+                                            </td>
+                                            <td>
+                                                <%= job.department %>
+                                            </td>
+                                            <td>
+                                                <%= job.salary %>
+                                            </td>
+                                            <td>
+                                                <%= job.jobType %>
+                                            </td>
+                                            <td>
+                                                <%= job.status %>
+                                            </td>
+                                            <td>
+                                                <a href="/jobView/<%= job._id %>" class="btn btn-info btn-sm">View</a>
+                                                <a href="/jobEdit/<%= job._id %>"
+                                                    class="btn btn-success btn-sm">Edit</a>
+                                                <a href="/jobdelete/<%= job._id %>" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Are you sure?')">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Posting Job (basic) -->
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <h2 class="mb-4">Post a New Job</h2>
+
+                        <form action="/company/jobs/add" method="POST">
+                            <!-- Job Title -->
+                            <div class="form-group mb-3">
+                                <label for="title">Job Title</label>
+                                <input type="text" id="title" name="title" class="form-control" required>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-group mb-3">
+                                <label for="description">Job Description</label>
+                                <textarea id="description" name="description" class="form-control" rows="5"
+                                    required></textarea>
+                            </div>
+
+                            <!-- Location -->
+                            <div class="form-group mb-3">
+                                <label for="location">Job Location</label>
+                                <input type="text" id="location" name="location" class="form-control" required>
+                            </div>
+
+                            <!-- Salary -->
+                            <div class="form-group mb-3">
+                                <label for="salary">Salary / Package</label>
+                                <input type="text" id="salary" name="salary" class="form-control" required>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="form-group mb-3">
+                                <label for="department">Department</label>
+                                <input type="text" id="department" name="department" class="form-control"
+                                    placeholder="e.g. CSE, IT" required>
+                            </div>
+
+                            <!-- Job Type -->
+                            <div class="form-group mb-3">
+                                <label for="jobType">Job Type</label>
+                                <select id="jobType" name="jobType" class="form-control">
+                                    <option value="Full-time">Full-time</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Contract">Contract</option>
+                                </select>
+                            </div>
+
+                            <!-- Deadline -->
+                              <div class="form-group mb-3">
+                                <label for="applicationDeadline">Application Deadline</label>
+                                <input type="date" id="applicationDeadline" name="applicationDeadline" class="form-control"
+                                     required>
+                            </div>
+                            <hr>
+
+                            <h4>Eligibility Criteria</h4>
+
+                            <!-- 10th Percent -->
+                            <div class="form-group mb-3">
+                                <label for="min10Percent">Minimum 10th %</label>
+                                <input type="number" name="min10Percent" id="min10Percent" class="form-control" min="0"
+                                    max="100">
+                            </div>
+
+                            <!-- 12th Percent -->
+                            <div class="form-group mb-3">
+                                <label for="min12Percent">Minimum 12th %</label>
+                                <input type="number" name="min12Percent" id="min12Percent" class="form-control" min="0"
+                                    max="100">
+                            </div>
+
+                            <!-- CGPA -->
+                            <div class="form-group mb-3">
+                                <label for="minCGPA">Minimum Graduation CGPA</label>
+                                <input type="number" name="minCGPA" id="minCGPA" class="form-control" min="0" max="10"
+                                    step="0.1">
+                            </div>
+
+                            <!-- Backlogs -->
+                            <div class="form-group mb-3">
+                                <label for="maxBacklogs">Maximum Allowed Backlogs</label>
+                                <input type="number" name="maxBacklog" id="maxBacklogs" class="form-control" min="0">
+                            </div>
+
+                            <!-- Allowed Branches -->
+                            <div class="form-group mb-3">
+                                <label for="allowedBranches">Allowed Branches (comma-separated)</label>
+                                <input type="text" name="allowedBranches" id="allowedBranches" class="form-control"
+                                    placeholder="e.g. CSE, IT, ECE">
+                            </div>
+
+                            <!-- Skills -->
+                            <div class="form-group mb-4">
+                                <label for="skillsRequired">Skills Required (comma-separated)</label>
+                                <input type="text" name="skillsRequired" id="skillsRequired" class="form-control"
+                                    placeholder="e.g. Java, Python, React">
+                            </div>
+
+                            <!-- Submit -->
+                            <button type="submit" class="btn btn-primary">Post Job</button>
+                        </form>
+
+
+                       
+                    </div>
+                </div>
+            </div>
+
+            <%- include('../layouts/footer.ejs') %>
